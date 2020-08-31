@@ -23,7 +23,6 @@ class Home extends Component {
                 disabled: true,
             };
         }
-        ;
     }
 
     setDataNewValue = (index, newValue) => {
@@ -41,9 +40,7 @@ class Home extends Component {
 
         }
         this.setState({myArr: tempArr}); //set the new state
-
     };
-
 
     changeDisable = (index) => {
         const tempArr = this.state.myArr.slice(); //copy the array
@@ -55,20 +52,23 @@ class Home extends Component {
         return (
             <>
                 <button onClick={this.addClick.bind(this)}>Add Input</button>
-
-                {this.state.myArr.map((item, i) => (
-                    <>
-                        <InputComp
-                            key={i}
-                            type="input"
-                            value={item.value}
-                            disabled={i > 0 ? item.disabled : false}
-                            changeValue={(val) => {
-                                this.setDataNewValue(i, val);
-                            }}
-                        />
-                    </>
-                ))}
+                {this.state.totalItems > 1 ? (
+                    <div>
+                        {this.state.myArr.map((item, i) => (
+                            <>
+                                <InputComp
+                                    key={i}
+                                    type="input"
+                                    value={item.value}
+                                    disabled={i > 0 ? item.disabled : false}
+                                    changeValue={(val) => {
+                                        this.setDataNewValue(i, val);
+                                    }}
+                                />
+                            </>
+                        ))}
+                    </div>
+                ) : ""}
             </>
         );
     }
